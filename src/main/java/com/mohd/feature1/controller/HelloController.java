@@ -10,6 +10,7 @@ import com.mohd.feature1.dto.HelloRequest;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
@@ -17,8 +18,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @Tag(description = "tag-desc", name = "HelloController-tagname")
 public class HelloController {
 
-	
-	@Operation(summary = "hello-summary", description = "hello-desc")
+	@Operation(summary = "hello-summary", description = "hello-desc",security = { @SecurityRequirement(name = "bearer-key") })
 	@PostMapping("/hello")
 	public ResponseEntity<String> hello( @RequestBody  HelloRequest request) {
 		return ResponseEntity.status(HttpStatus.OK).body("OK-BOSS");
